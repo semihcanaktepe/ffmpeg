@@ -1,10 +1,10 @@
-# Overview of the Basic Functionality of _ffmpeg_
+# Overview of the Basic Functionality of FFmpeg
 
-## What is _ffmpeg_?
-[_ffmpeg_](https://ffmpeg.org) is a free and open-source software project that provides a command-line tool for handling audio and video files. It is a powerful multimedia framework that can decode, encode, transcode, mux, demux, stream, filter, and play almost any type of audio and video format. _ffmpeg_ is often used by video professionals, software developers, and enthusiasts who need to manipulate audio and video files in a flexible and efficient way. Some of the common tasks that can be performed with _ffmpeg_ include converting file formats, trimming or joining video clips, adjusting video parameters such as resolution and bitrate, adding subtitles or watermarks, and applying video effects or filters.
+## What is FFmpeg?
+[FFmpeg](https://ffmpeg.org) is a free and open-source software project that provides a command-line tool for handling audio and video files. It is a powerful multimedia framework that can decode, encode, transcode, mux, demux, stream, filter, and play almost any type of audio and video format. FFmpeg is often used by video professionals, software developers, and enthusiasts who need to manipulate audio and video files in a flexible and efficient way. Some of the common tasks that can be performed with FFmpeg include converting file formats, trimming or joining video clips, adjusting video parameters such as resolution and bitrate, adding subtitles or watermarks, and applying video effects or filters.
 
-## How to use _ffmpeg_?
-First, you need to install _ffmpeg_ on your computer. You can access the download link from [here](https://ffmpeg.org/download.html). After you download and install _ffmpeg_, you can call and run it in your terminal. Don't forget to set the working directory to the one where you store the media files you will use.
+## How to use FFmpeg?
+First, you need to install FFmpeg on your computer. You can access the download link from [here](https://ffmpeg.org/download.html). After you download and install FFmpeg, you can call and run it in your terminal. Don't forget to set the working directory to the one where you store the media files you will use.
 
 You can set the working directory as:
 ```
@@ -13,13 +13,13 @@ cd /PATH/TO/YOUR/MEDIA/FILES
 Once you have done that, you are good to go. So, let's start with the basics.
 
 ## How to convert the video format?
-Some video files can be in a certain format (e.g., .mp4), but the use case may require a different format (e.g., .avi). You can do this in _ffmpeg_ as follows: 
+Some video files can be in a certain format (e.g., .mp4), but the use case may require a different format (e.g., .avi). You can do this in FFmpeg as follows: 
 
 ```
 ffmpeg -i shapes.mp4 shapes.avi
 ```
 
-_ffmpeg_ commands always start with the `ffmpeg` keyword. , `-i` command is used following the name of the input file to provide the input file. Then the name of the output file is provided in the intended format (.avi in this case).
+FFmpeg commands always start with the `ffmpeg` keyword. , `-i` command is used following the name of the input file to provide the input file. Then the name of the output file is provided in the intended format (.avi in this case).
 
 ## How to trim a video?
 Let's say you need a certain part of the video file. You can do this by specifying the start time using `-ss` command and the duration of the trim using `-t` command. Example:
@@ -28,8 +28,8 @@ ffmpeg -ss [start] -i input.mp4 -t [duration] -c copy output.mp4
 
 ffmpeg -ss 30 -i sigmaface.mp4 -t 2 -c copy bateman.mp4
 ```
-
 Here we extract a 2-second long clip from the 30th second of the sigmaface.mp4.
+
 If you want to cut or trim the video from the end, you can use `-sseof` command. For example, you want the last 1 second of the video file, shapes.mp4.
 ```
 ffmpeg -sseof -00:00:01 -i shapes.mp4 -c copy shapesend.mp4
@@ -58,7 +58,7 @@ What each command in the syntax does is as follows:
 `output.mp4` specifies the output file as "output.mp4".
 
 ## How to create a timelapse?
-Sometimes, for illustrating statistics simulations, it could be appealing and interesting to animate the static images. This can be done using ffmpeg as follows:
+Sometimes, for illustrating statistics simulations, it could be appealing and interesting to animate multiple static images. This can be done using FFmpeg as follows:
 
 First, we need to specify the frame rate of the video. If you have 100 images 10 fps video would be 10-second long. Adjust it accordingly. Then, since the images follow a sequential name (e.g., image1.jpg, image2.jpg, etc.), we specify the starting number in the naming convention. Afterward, we define the prefix in the names of the image files, `%d` placeholder counts the numbers starting from the specified starting point. Finally, the name of the output file. Let's convert the image files in the kernel folder into a timelapse video. Don't forget to set your working directory to where the images are.
 ```
@@ -140,7 +140,7 @@ ffmpeg -i sigmaface.mp4 -i shapes.mp4 \
 sigma-shapes.mp4
 ```
 ## How to chroma-key a video (green screen)?
-You may want to replace the background of a video shot in front of a green/blue screen for a lot of reasons. To do this, you need to chroma-key the green (or blue depending on the background color) from the video. You can chroma-key a video using _ffmpeg_ by using the `chromakey` filter. Here's an example command that removes the green screen background from a video.
+You may want to replace the background of a video shot in front of a green/blue screen for a lot of reasons. To do this, you need to chroma-key the green (or blue depending on the background color) from the video. You can chroma-key a video using FFmpeg by using the `chromakey` filter. Here's an example command that removes the green screen background from a video.
 ```
 ffmpeg -i input_video.mp4 \
 -filter_complex "[0:v]chromakey=0x00FF00:0.1:0.2[fg]; \
