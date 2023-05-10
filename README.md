@@ -173,7 +173,7 @@ ffmpeg -i alien.mp4 -i kernel.mp4 \
 [1:v][fg]overlay=50:50:x=-150:y=50[outv]" \
 -map "[outv]" -map 0:a \
 -c:v libx264 -c:a copy \
-green-screen2.mp4
+kernel-alien.mp4
 ```
 
 
