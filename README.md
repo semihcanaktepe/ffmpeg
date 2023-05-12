@@ -1,7 +1,7 @@
 # Overview of the Basic Functionality of FFmpeg
 
 ## What is FFmpeg?
-[FFmpeg](https://ffmpeg.org) is a free and open-source software project that provides a command-line tool for handling audio and video files. It is a powerful multimedia framework that can decode, encode, transcode, mux, demux, stream, filter, and play almost any type of audio and video format. FFmpeg is often used by video professionals, software developers, and enthusiasts who need to manipulate audio and video files in a flexible and efficient way. Some of the common tasks that can be performed with FFmpeg include converting file formats, trimming or joining video clips, adjusting video parameters such as resolution and bitrate, adding subtitles or watermarks, and applying video effects or filters.
+[FFmpeg](https://ffmpeg.org) is a free and open-source software project that provides a command-line tool for handling audio and video files. It is a powerful multimedia framework that can decode, encode, transcode, mux, demux, stream, filter, and play almost any type of audio and video format. FFmpeg is often used by video professionals, software developers, and enthusiasts who need to manipulate audio and video files in a flexible and efficient way. Some of the common tasks that can be performed with FFmpeg include converting file formats, trimming or joining video clips, adjusting video parameters such as resolution and bitrate, adding subtitles or watermarks, and applying video effects or filters. [Here](https://www.youtube.com/watch?v=26Mayv5JPz0) you can watch a 100-second video from [Fireship](https://www.youtube.com/@Fireship) YouTube channel.
 
 ## How to use FFmpeg?
 First, you need to install FFmpeg on your computer. You can access the download link from [here](https://ffmpeg.org/download.html). After you download and install FFmpeg, you can call and run it in your terminal. Don't forget to set the working directory to the one where you store the media files you will use.
@@ -10,16 +10,16 @@ You can set the working directory as:
 ```
 cd /PATH/TO/YOUR/MEDIA/FILES
 ```
+
 Once you have done that, you are good to go. You can view which files exist in the directory you set using the `ls` command.
 ```
 ls
 ```
 
- So, let's start with the basics.
+I provided you with some media files in the media folder of this repository so that you can directly apply the commands presented here. So, let's start with the basics.
 
 ## How to convert the video format?
 Some video files can be in a certain format (e.g., .mp4), but the use case may require a different format (e.g., .avi). You can do this in FFmpeg as follows: 
-
 ```
 ffmpeg -i shapes.mp4 shapes.avi
 ```
@@ -79,7 +79,6 @@ for i in *.mp4; do [ffmpeg query]; done
 ```
 
 The query should include `-i "$i"` to specify the input files and `[prefix]"$i"` to define the output files. Prefix is not needed but is crucial if you do not want to save the output on the previous files. Now let's cut the last 1 second of every video in the directory.
-
 ```
 for i in *.mp4; do ffmpeg -sseof -00:00:01 -i "$i" -c copy cut_$i; done
 ```
@@ -110,6 +109,7 @@ ffmpeg -i input_video.mp4 -i overlay_video.mp4 \
 -c:v libx264 -c:a copy \
 output.mp4
 ```
+
 Let's break down the command and see what it does:
 
 `-i input_video.mp4` specifies the input video file.
@@ -133,7 +133,6 @@ Let's break down the command and see what it does:
 `output.mp4` specifies the output file name.
 
 This command draws a black box over the input video between the times 2 and 4 seconds, scales the overlay video to 200x200 pixels, overlays the scaled video on top of the black box, and overlays the result on top of the original video using the overlay filter. You can modify the command to suit your needs by adjusting the box position, width, and height, the scale of the overlay video, and the output options. So, let's add the shapes.mp4 video on top of sigmaface.mp4
-
 ```
 ffmpeg -i sigmaface.mp4 -i shapes.mp4 \
 -filter_complex "[0:v]drawbox=50:50:406:360:color=black:enable='between(t,0,34)'[masked]; \
@@ -180,5 +179,6 @@ ffmpeg -i alien.mp4 -i kernel.mp4 \
 -c:v libx264 -c:a copy \
 kernel-alien.mp4
 ```
+
 
 
