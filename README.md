@@ -10,7 +10,12 @@ You can set the working directory as:
 ```
 cd /PATH/TO/YOUR/MEDIA/FILES
 ```
-Once you have done that, you are good to go. So, let's start with the basics.
+Once you have done that, you are good to go. You can view which files exist in the directory you set using the `ls` command.
+```
+ls
+```
+
+ So, let's start with the basics.
 
 ## How to convert the video format?
 Some video files can be in a certain format (e.g., .mp4), but the use case may require a different format (e.g., .avi). You can do this in FFmpeg as follows: 
